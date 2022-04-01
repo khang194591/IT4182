@@ -5,7 +5,7 @@
             "name": "Debug",
             "type": "cppdbg",
             "request": "launch",
-            "args": [],
+            "args": ["${workspaceFolder}/alice30.txt","${workspaceFolder}/stopw.txt"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
