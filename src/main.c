@@ -5,7 +5,7 @@
 
 #define BUFF_SIZE 200
 
-#define MAX_LENGTH 5000
+#define MAX_LENGTH 20000
 
 #define null NULL
 
@@ -28,6 +28,7 @@ int is_ignore(char ignores[MAX_LENGTH][BUFF_SIZE], int length, char *key) {
 	return 0;
 }
 
+// Chương trình nhận 2 tham số là file text và tham số thứ 2 là file các từ bỏ qua
 int main(int argc, char const *argv[]) {
 
 	FILE *file_text = fopen(argv[1], "r");
@@ -38,7 +39,7 @@ int main(int argc, char const *argv[]) {
 		return 1;
 	}
 
-	const char delim[] = " ,()0123456789\n\r";
+	const char delim[] = " ,()0123456789`';-:\"\n\r";
 
 	char words[MAX_LENGTH][BUFF_SIZE];
 	char ignores[MAX_LENGTH][BUFF_SIZE];
