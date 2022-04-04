@@ -5,96 +5,99 @@
 
 #define BUFF_SIZE 200
 
-#define MAX_LENGTH 10000
+#define MAX_LENGTH 5000
 
-int compare(char *a, char *b)
-{
-    return strcmp(a, b);
+#define null NULL
+
+int compare(char *a, char *b) {
+	return strcmp(a, b);
 }
 
-int main(int argc, char const *argv[])
-{
-    FILE *file_text = fopen(argv[1], "r");
+void string_to_lower(char *string) {
+	for (size_t i = 0; i < strlen(string); ++i) {
+		string[i] = tolower(string[i]);
+	}
+}
 
-    char buff[BUFF_SIZE];
-    char buff_2[BUFF_SIZE];
-    char words[MAX_LENGTH][BUFF_SIZE];
-    int lines[MAX_LENGTH][100];
-    int line_length[MAX_LENGTH];
+int is_ignore(char ignores[MAX_LENGTH][BUFF_SIZE], int length, char *key) {
+	for (int i = 0; i < length; ++i) {
+		if (strcmp(ignores[i], key) == 0) {
+			return 1;
+		}
+	}
+	return 0;
+}
 
-    int line = 0;
-    int word_count = 0;
+int main(int argc, char const *argv[]) {
 
-    while (fgets(buff, BUFF_SIZE, file_text) != NULL)
-    {
-        line++;
-        int first = 0;
-        int last = 0;
+	FILE *file_text = fopen(argv[1], "r");
+	FILE *file_ignore = fopen(argv[2], "r");
 
-        char word[BUFF_SIZE];
+	if (argc != 3 || !file_text) {
+		printf("Invalid argument");
+		return 1;
+	}
 
-        for (int i = 0; i <= strlen(buff); ++i)
-        {
-            if (isalpha(buff[i]) == isalpha(buff[i + 1]))
-            {
-                last = i + 1;
-            }
-            else
-            {
-                if (isalpha(buff[i]) && !isalpha(buff[i + 1]))
-                {
-                    if (last < first)
-                    {
-                        last = first;
-                    }
+	const char delim[] = " ,()0123456789\n\r";
 
-                    memcpy(word, buff + first, last - first + 1);
+	char words[MAX_LENGTH][BUFF_SIZE];
+	char ignores[MAX_LENGTH][BUFF_SIZE];
+	char buff[BUFF_SIZE];
+	char *token = null;
 
-                    for (size_t i = 0; i < strlen(word); i++)
-                    {
-                        word[i] = tolower(word[i]);
-                    }
+	int ignore_index = 0;
+	int word_index = 1;
+	int line_index = 1;
+	int is_first = 1;
 
-                    word[last - first + 1] = '\0';
+	while (fgets(buff, BUFF_SIZE, file_ignore) != null) {
+		snprintf(ignores[ignore_index++], strlen(buff) - 1, "%s", buff);
+	}
 
-                    int found = 0;
+	while (fgets(buff, BUFF_SIZE, file_text) != null) {
+		int len = strlen(words[word_index - 1]) - 1;
+		token = strtok(buff, delim);
+		if (token != null && strcmp(token, ".") != 0) {
+			if (is_first && !is_ignore(ignores, ignore_index, token)) {
+				string_to_lower(token);
+				sprintf(words[word_index++], "%s", token);
+				is_first = 0;
+			}
+			if (isupper(token[0])) {
+				if (words[word_index - 1][len] == '.') {
+					words[word_index - 1][len] = '\0';
+				} else {
+				}
+			} else if (!is_ignore(ignores, ignore_index, token)) {
+				string_to_lower(token);
+				sprintf(words[word_index++], "%s", token);
+			}
+		}
+		while (token != null) {
+			len = strlen(words[word_index - 1]) - 1;
+			token = strtok(null, delim);
+			if (token != null && strcmp(token, ".") != 0) {
+				if (isupper(token[0])) {
+					if (words[word_index - 1][len] == '.') {
+						words[word_index - 1][len] = '\0';
+					} else {
+					}
+				} else if (!is_ignore(ignores, ignore_index, token)) {
+					string_to_lower(token);
+					sprintf(words[word_index++], "%s", token);
+				}
+			}
+		}
+		line_index++;
+	}
 
-                    for (size_t j = 0; j < word_count; j++)
-                    {
-                        if (strcmp(word, words[j]) == 0)
-                        {
-                            found = 1;
-                            lines[j][line_length[j]++] = line;
-                        }
-                    }
+	words[word_index - 1][strlen(words[word_index - 1]) - 1] = '\0';
 
-                    if (found == 0)
-                    {
-                        strcpy(words[word_count], word);
-                        line_length[word_count] = 0;
-                        lines[word_count][line_length[word_count]++] = line;
-                        word_count++;
-                    }
-                }
-                else
-                {
-                    first = i + 1;
-                }
-            }
-        }
-    }
+	for (int i = 0; i < word_index; ++i) {
+		printf("%s\n", words[i]);
+	}
 
-    // qsort(words, word_count, BUFF_SIZE, compare);
+	fclose(file_text);
 
-    for (size_t i = 0; i < word_count; i++)
-    {
-        printf("%s ", words[i]);
-        for (size_t j = 0; j < line_length[i]; j++)
-        {
-            printf(" %d ", lines[i][j]);
-        }
-        printf("\n");
-    }
-
-    return 0;
+	return 0;
 }

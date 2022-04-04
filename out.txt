@@ -1,140 +1,79 @@
-a  1 
-ab  5 
-and  5 
-aph  5  77  85  95  109  112  253  267 
-are  5 
-arguments  16 
-aw  16 
-b  17 
-bugs  18 
-by  19 
-c  45  46  47  55  59  62  62  65  68  72  73  73  75  75  78  78  80  86  86  86  86  87  90  90  105  105  107  107  109  112  112  113  115  115  115  115  116  116  118  118  118  118  121  121  122  122  124  125  125  125  125  130  130  131  131  132  134  134  135  136  137  138  138  139  140  141  141  141  141  142  142  142  146  146  147  248  273  286 
-ch  51  107  107  130  130  135  287  288 
-change  54  68  68  68  68  70  86  90  90  90  106  109  112  112  112  112  115  115  118  121  122  130  132  134  134  134  134  134  134  134  134  134  134  134  137  138  143  263  264  283 
-command  55  55  59  60  62  68  80  86  90  90  90  90  101  103  104  106  107  109  109  112  112  112  112  112  112  112  112  112  113  118  121  122  134  135  192  239  240  249  250  251  253  260  260  261  263  264  265  268  279  289  289 
-d  58  67  104  120  124  138  142  142  143  195  239  245  253  265  281 
-debug  60  60  68  68  98  98  98  98  98  101  112  115  115  115  115  130  130  130  130  135  137  142  143  143  185  240  243  243  243  244  244  246  247  247  248  248  248  248  249  249  251  253  255  256  257  258  259  261  261  266  266  268  268  270  271  271  272  274  275  279  281  286  287  290  290  313 
-e  60  91  98  101  107  109  118  146  240  251  260  264  266  267 
-each  60  81  83  86  88  90  90  90  91  103  107  112  112  112  112  115  115  134  135  136  137  141  146  146  195  248  266 
-elf  60  75  90  100  101  101  107  115  118  121  122  125  135  135  135  136  136  137  185  260  260  263  267  267 
-end  62  135  239  243  243  243  243  244  249  249  249  249  251  251  251  251  253  253  253  253  261  261  261  261  263  263  263  264  264  264  264  265  265  265  266  266  266  266  268  268  268  268  279  279  281  286  287 
-environment  73  101  103  103  107  134  135  142  283 
-eplacing  75 
-extent  76 
-ey  85 
-f  90 
-fail  91  115  115  128  135  139  140  177 
-ff  101  107  135  137  181  193  197  247  253 
-for  105 
-frame  106 
-free  107  197  247  250  253  260  260  263  264  265  268  285 
-from  109  109  112  134  134  134  135  239  273  285 
-g  112  139  140  142  250  260 
-gnu  124 
-gpl  130 
-gplv  130 
-h  130 
-hc  132  134  135  159  159  190  209  217  219  219  221  221  221  223  223  223  223  225  225  225  225  226  228  228  228  228  229  229  231  231  231  231  232  232  253  288 
-hd  132  142  245  248 
-hdh  134  241  265 
-help  134 
-hk  141  195  195  195  195  195  195  195  196  196  196  196  196  196  196  197 
-html  142 
-https  146  241  260  279  289 
-hu  158 
-i  159 
-if  159 
-implies  174  174 
-information  174  180 
-ion  174  180  209  213  214 
-is  174 
-it  174  174 
-j  174  213 
-k  174  181 
-l  174 
-later  174 
-law  176  190 
-ld  176 
-license  176  181 
-licenses  176 
-line  176 
-lines  176  190 
-linux  176 
-long  176 
-lure  176 
-m  177 
-mandatory  177 
-memcpy  177 
-mere  177 
-multiple  177 
-n  177  185  214 
-name  177  185 
-newline  180 
-no  180 
-not  180 
-nul  180 
-null  180 
-o  180 
-on  181 
-online  181  185 
-options  181 
-or  181 
-org  181 
-others  181 
-output  185 
-p  185 
-pass  185 
-pc  185  214 
-pd  185 
-permitted  185 
-pf  190 
-print  190 
-processing  192 
-ptl  192 
-ql  197  200  261  265 
-r  209 
-redistribute  209 
-remove  212 
-report  212 
-resulting  212  212 
-s  212  212 
-scan  212 
-shebang  212 
-short  212 
-so  212 
-software  212 
-step  212 
-string  212 
-t  213 
-tfh  213  214 
-the  213  213 
-there  213 
-this  213 
-to  213 
-too  213  217  219  221  223  226  229  232 
-trcmp  213 
-u  213 
-uf  214 
-uh  214 
-unset  214 
-used  214 
-v  214 
-variable  214 
-varname  232 
-verbose  253 
-version  253 
-w  253 
-warranty  253 
-with  253 
-x  253 
-xa  260 
-xb  260  265  267 
-xd  262 
-xe  262 
-xo  265 
-xp  265  269 
-xt  265 
-xw  267 
-y  267 
-you  309 
-z  310 
+at 
+least 
+people 
+were 
+killed 
+and 
+wounded 
+friday 
+afternoon 
+in 
+a  
+ 
+ 
+ 
+ 
+kilometers 
+miles 
+southwest 
+of 
+baghdad 
+an 
+official 
+with 
+the 
+ministry 
+interior 
+has 
+cnn 
+u. 
+s. 
+military 
+said 
+it 
+initial 
+reports 
+from 
+its 
+iraqi 
+partners 
+that 
+bombing 
+happened 
+during 
+sunni 
+tribal 
+gathering 
+sheikhs 
+members 
+support 
+councils 
+citizens 
+attending 
+luncheon 
+home 
+was 
+part 
+reconciliation 
+efforts 
+among 
+area 
+tribes 
+another 
+incident 
+two 
+sons 
+iraq 
+four 
+others 
+when 
+gunmen 
+attacked 
+their 
+checkpoint 
+morning 
+jurf 
+al 
+sakhar 
+about 
+south 
