@@ -1,91 +1,33 @@
-#
-# 'make'        build executable file 'main'
-# 'make clean'  removes all .o and executable files
-#
-
-# define the C compiler to use
+CFLAGS = -c -Wall
 CC = gcc
+LIBS =  -lm 
 
-# define any compile-time flags
-CFLAGS	:= -Wall -Wextra -g
+all: parser
 
-# define library paths in addition to /usr/lib
-#   if I wanted to include libraries not in /usr/lib I'd specify
-#   their path using -Lpath, something like:
-LFLAGS =
+parser: main.o parser.o scanner.o reader.o charcode.o token.o error.o
+	${CC} main.o parser.o scanner.o reader.o charcode.o token.o error.o -o parser
 
-# define build directory
-OUTPUT	:= build
+main.o: main.c
+	${CC} ${CFLAGS} main.c
 
-# define source directory
-SRC		:= src
+scanner.o: scanner.c
+	${CC} ${CFLAGS} scanner.c
 
-# define include directory
-INCLUDE	:= include
+parser.o: parser.c
+	${CC} ${CFLAGS} parser.c
 
-# define lib directory
-LIB		:= lib
+reader.o: reader.c
+	${CC} ${CFLAGS} reader.c
 
-ifeq ($(OS),Windows_NT)
-MAIN	:= main.exe
-SOURCEDIRS	:= $(SRC)
-INCLUDEDIRS	:= $(INCLUDE)
-LIBDIRS		:= $(LIB)
-FIXPATH = $(subst /,\,$1)
-RM			:= del /q /f
-MD	:= mkdir
-else
-MAIN	:= main
-SOURCEDIRS	:= $(shell find $(SRC) -type d)
-INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d)
-LIBDIRS		:= $(shell find $(LIB) -type d)
-FIXPATH = $1
-RM = rm -f
-MD	:= mkdir -p
-endif
+charcode.o: charcode.c
+	${CC} ${CFLAGS} charcode.c
 
-# define any directories containing header files other than /usr/include
-INCLUDES	:= $(patsubst %,-I%, $(INCLUDEDIRS:%/=%))
+token.o: token.c
+	${CC} ${CFLAGS} token.c
 
-# define the C libs
-LIBS		:= $(patsubst %,-L%, $(LIBDIRS:%/=%))
+error.o: error.c
+	${CC} ${CFLAGS} error.c
 
-# define the C source files
-SOURCES		:= $(wildcard $(patsubst %,%/*.c, $(SOURCEDIRS)))
-
-# define the C object files 
-OBJECTS		:= $(SOURCES:.c=.o)
-
-#
-# The following part of the makefile is generic; it can be used to 
-# build any executable just by changing the definitions above and by
-# deleting dependencies appended to the file from 'make depend'
-#
-
-OUTPUTMAIN	:= $(call FIXPATH,$(OUTPUT)/$(MAIN))
-
-all: $(OUTPUT) $(MAIN)
-	@echo Executing 'all' complete!
-
-$(OUTPUT):
-	$(MD) $(OUTPUT)
-
-$(MAIN): $(OBJECTS) 
-	$(CC) $(CFLAGS) $(INCLUDES) -o $(OUTPUTMAIN) $(OBJECTS) $(LFLAGS) $(LIBS)
-
-# this is a suffix replacement rule for building .o's from .c's
-# it uses automatic variables $<: the name of the prerequisite of
-# the rule(a .c file) and $@: the name of the target of the rule (a .o file) 
-# (see the gnu make manual section about automatic variables)
-.c.o:
-	$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
-
-.PHONY: clean
 clean:
-	$(RM) $(OUTPUTMAIN)
-	$(RM) $(call FIXPATH,$(OBJECTS))
-	@echo Cleanup complete!
+	rm -f *.o *~
 
-run: all
-	./$(OUTPUTMAIN)
-	@echo Executing 'run: all' complete!
